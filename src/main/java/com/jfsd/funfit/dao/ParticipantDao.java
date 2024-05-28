@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.jfsd.funfit.model.Participant;
-import com.jfsd.funfit.resource.DbResource;
+import static com.jfsd.funfit.resource.DbResource.*;
 
 public class ParticipantDao {
 
 	public static int addParticipant(Participant participant) {
 		try {
-			Connection con = DbResource.getDbConnection();
+			Connection con = GetResource().getDbConnection();
 			
 			PreparedStatement pstmt = con.prepareStatement("insert into participants(first_name,age,phone_number,batch_id) values(?,?,?,?);");
 			pstmt.setString(1, participant.getFirstName());
@@ -31,7 +31,7 @@ public class ParticipantDao {
 	public static List<Participant> viewAllParticipants() {
 		List<Participant> listOfParticipats = new ArrayList<>();
 		try {
-			Connection con = DbResource.getDbConnection();
+			Connection con = GetResource().getDbConnection();
 			PreparedStatement pstmt = con.prepareStatement("select * from participants");
 			ResultSet rs = pstmt.executeQuery();
 			
@@ -52,7 +52,7 @@ public class ParticipantDao {
 
 	public static boolean deleteParticipant(int participantId) {
 		try {
-			Connection con = DbResource.getDbConnection();
+			Connection con = GetResource().getDbConnection();
 			PreparedStatement pstmt = con.prepareStatement("delete from participants where participant_id = ?");
 			pstmt.setInt(1,  participantId);
 			return pstmt.execute();

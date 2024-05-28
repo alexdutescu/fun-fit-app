@@ -6,24 +6,23 @@ import java.sql.SQLException;
 
 public class DbResource {
 
-	private static Connection con = null;
+	private static DbResource instance;
+	private Connection con;
 
-	private DbResource(Connection con) throws ClassNotFoundException, SQLException {
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		con = DriverManager.getConnection("jdbc:mysql://localhost:3306/funfitdb", "root", "admin");
+	private DbResource() throws SQLException {
+		try {
+			Class.forName("org.postgresql.Driver");
+			this.con = DriverManager.getConnection("jdbc:mysql://localhost:3306/funfit", "admin", "admin");
+		} catch (ClassNotFoundException ex) {
+			System.out.println("Database Connection Creation Failed : " + ex.getMessage());
+		}
 	}
 
-	public static Connection getDbConnection() {
-		try {
-			if (con != null && !con.isClosed()) {
-				return con;
-			} else {
-				new DbResource(con);
-				return con;
-			}
-		} catch (Exception e) {
-			System.err.println(e);
-			return null;
-		}
+	public Connection getDbConnection() {
+		return this.con;
+	}
+
+	public static DbResource GetResource() throws SQLException {
+		return (instance == null || instance.getDbConnection().isClosed()) ? new DbResource() : instance;
 	}
 }
