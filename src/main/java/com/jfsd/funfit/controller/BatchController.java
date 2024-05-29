@@ -22,43 +22,30 @@ import com.jfsd.funfit.service.BatchService;
 @WebServlet("/BatchController")
 public class BatchController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-      
-	BatchService bs = new BatchService();
-     public BatchController() {
-        super();
 
-    }
-     // view purpose 
+	private final BatchService bs;
+	
+	public BatchController() {
+		this.bs = new BatchService();
+	}
+	// view purpose 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Batch> listOfBatch = bs.viewAllBatch();
-
 		HttpSession hs = request.getSession();
 		hs.setAttribute("batches", listOfBatch);
-		
 		String flagValue = request.getParameter("flag");
-		
-		if (flagValue.equals("2")) {
-			response.sendRedirect("addParticipants.jsp");
-		} else if(flagValue.equals("1")) {
+		if(flagValue.equals("2")) {
+			response.sendRedirect("addParticipant.jsp");
+		}else if(flagValue.equals("1")) {
 			response.sendRedirect("viewBatches.jsp");
-		} else  if(flagValue.equals("3")) {
+		}else  if(flagValue.equals("3")) {
 			String batchid = request.getParameter("batchid");
 			bs.deleteBatch(Integer.parseInt(batchid));
 
 			List<Batch> listOfBatch2 = bs.viewAllBatch();
 			HttpSession hs2 = request.getSession();
 			hs2.setAttribute("batches", listOfBatch2);
-			
 			response.sendRedirect("viewBatches.jsp");
-		} else {
-			HttpSession hs3 = request.getSession();
-			String batchid = request.getParameter("batchid");
-			
-			Batch batch = bs.getBatch(Integer.parseInt(batchid));
-			System.out.println(batch);
-			hs3.setAttribute("batch", batch);
-			
-			response.sendRedirect("updateBatch.jsp");
 		}
 	}
 	// store or insert 
@@ -78,21 +65,5 @@ public class BatchController extends HttpServlet {
 		String result = bs.addBatch(bb);
 		pw.println(result);
 		rd.include(request, response);
-	}
-	
-	@Override
-	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-	}
-	
-	@Override
-	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// PrintWriter pw = response.getWriter();
-		
-				
-	}
-	
-	protected void doUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("AAAA");
 	}
 }

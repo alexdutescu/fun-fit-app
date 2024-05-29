@@ -23,8 +23,7 @@
 			<%
 			for (int i = 1; i <= 12; i++) {
 			%>
-			<option value="<%=i%>:00"><%=i%>:00
-			</option>
+			<option value="<%=i%>"><%=i%>:00</option>
 			<%
 			}
 			%>

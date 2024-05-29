@@ -33,7 +33,9 @@
 				</td>
 				<td><core:out value="${participant.getBatchId()}"></core:out></td>
 				<td><a
-					href="ParticipantsController?flag=2&participantid=${participant.getParticipantId()}">Delete</a></td>
+					href="ParticipantController?flag=2&participantId=${participant.getParticipantId()}">Delete</a></td>
+				<td><a
+					href="ParticipantController?flag=3&participantId=${participant.getParticipantId()}">Edit</a></td>
 			</tr>
 		</core:forEach>
 	</table>

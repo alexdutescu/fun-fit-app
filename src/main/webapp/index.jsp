@@ -15,7 +15,7 @@
 <body>
 	<h2>Fun Fit Application!</h2>
 	<a href="addBatch.jsp">Add Batch</a> |
-	<a href="BatchController?flag=2">Add Participants</a> |
+	<a href="BatchController?flag=2">Add Participant</a> |
 	<a href="BatchController?flag=1">View Batch</a> |
 	<a href="ParticipantController?flag=1">View Participants</a> |
 </body>

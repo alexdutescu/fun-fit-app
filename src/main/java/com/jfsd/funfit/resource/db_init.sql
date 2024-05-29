@@ -1,4 +1,4 @@
-create database funfit;
+create database if not exists funfit;
 use funfit;
 create table batch(batch_id int primary key auto_increment, type_of_batch enum('morning', 'evening'), time varchar(10));
 

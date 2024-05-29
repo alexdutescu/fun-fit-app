@@ -13,8 +13,16 @@ public class ParticipantService {
 	public List<Participant> viewAllParticipants() {
 		return ParticipantDao.viewAllParticipants();
 	}
-	
-	public boolean deleteParticipant(int participantid){
+
+	public boolean deleteParticipant(int participantid) {
 		return ParticipantDao.deleteParticipant(participantid);
+	}
+
+	public Participant getParticipant(int participantid) {
+		return ParticipantDao.getParticipant(participantid);
+	}
+
+	public int updateParticipant(Participant participant) {
+		return ParticipantDao.updateParticipant(participant);
 	}
 }

@@ -24,11 +24,9 @@
 			<tr>
 				<td><core:out value="${batch.getBatchId()}"></core:out></td>
 				<td><core:out value="${batch.getTypeOfBatch()}"></core:out></td>
-				<td><core:out value="${batch.getTime()}"></core:out></td>
+				<td><core:out value="${batch.getTime()}:00"></core:out> </td>
 				<td><a
 					href="BatchController?flag=3&batchid=${batch.getBatchId()}">Delete</a></td>
-				<td><a
-					href="BatchController?flag=4&batchid=${batch.getBatchId()}">Edit</a></td>
 			</tr>
 		</core:forEach>
 	</table>

@@ -14,7 +14,7 @@
 </head>
 <body>
 	<h2>Add Participants Details</h2>
-	<form action="ParticipantsController" method="post">
+	<form action="ParticipantController" method="post">
 
 		<label>First Name</label> <input type="text" name="firstname"><br />
 		<label>Age</label> <input type="number" name="age"><br /> <label>Phone
@@ -25,8 +25,8 @@
 					<core:out value="${bid.getTypeOfBatch()}"></core:out> -
 					<core:out value="${bid.getTime()}"></core:out></option>
 			</core:forEach>
-		</select> <br /> <input type="submit" value="Add Participants" /> <input
-			type="reset" value="reset" />
+		</select> <br /> <input type="submit" value="Add Participant" /> 
+		<input type="reset" value="reset" />
 	</form>
 	<br />
 	<a href="index.jsp">Back</a>
