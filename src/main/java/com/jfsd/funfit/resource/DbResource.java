@@ -11,8 +11,8 @@ public class DbResource {
 
 	private DbResource() throws SQLException {
 		try {
-			Class.forName("org.postgresql.Driver");
-			this.con = DriverManager.getConnection("jdbc:mysql://localhost:3306/funfit", "admin", "admin");
+			Class.forName("com.mysql.jdbc.Driver");
+			this.con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/funfit", "alex", "alex");
 		} catch (ClassNotFoundException ex) {
 			System.out.println("Database Connection Creation Failed : " + ex.getMessage());
 		}
